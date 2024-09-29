@@ -1,0 +1,68 @@
+
+import java.util.*;
+
+public class CountFrogs {
+    public static void main(String[] args) {
+        
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        String inputString = scanner.nextLine();
+        int queryCount = scanner.nextInt();
+        
+        int[] startPositions = new int[queryCount];
+        
+        int[] endPositions = new int[queryCount];
+        
+        for (int i = 0; i < queryCount; i++) {
+            
+            startPositions[i] = scanner.nextInt();
+        }
+        
+        for (int i = 0; i < queryCount; i++) {
+            endPositions[i] = scanner.nextInt();
+            
+        }
+        
+        int[] frogCounts = new int[queryCount];
+        
+        for (int i = 0; i < queryCount; i++) {
+            
+            int startIndex = startPositions[i] - 1;
+            
+            int endIndex = endPositions[i] - 1;
+            
+            int starCount = 0;
+            
+            boolean hasBar = false;
+            
+            for (int j = startIndex; j <= endIndex; j++) {
+
+            
+                char currentChar = inputString.charAt(j);
+                
+                if (currentChar == '|') {
+                    if (hasBar) {
+                    
+                        frogCounts[i] += starCount;
+                
+                    }
+                    starCount = 0;
+                    hasBar = true;
+                } else if (currentChar == '*') {
+                    if (hasBar) {
+                        starCount++;
+                    }
+                }
+            
+                
+            }
+        }
+        
+        for (int count : frogCounts) {
+            
+            
+            System.out.println(count);
+        }
+    }
+}
